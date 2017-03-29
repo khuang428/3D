@@ -75,12 +75,9 @@ void add_sphere( struct matrix * edges,
 struct matrix * generate_sphere(double cx, double cy, double cz,
 				double r, double step ) {
   struct matrix * sphere = new_matrix(4,4);
-  int n = 1/step;
-  int i, j;
-  double t, x, y, z;
-  for(i = 0;i <= n;i++){
-    for(j = 0;j <= n;j++){
-      t = 1/n;
+  double i, j, x, y, z;
+  for(i = 0;i <= 1.001;i+=step){
+    for(j = 0;j <= 1.001;j+=step){
       x = r * cos(2 * j * M_PI) + cx;
       y = r * sin(2 * j * M_PI) * cos(i * M_PI) + cy;
       z = r * sin(2 * j * M_PI) * sin(i * M_PI) + cz;
@@ -131,12 +128,13 @@ void add_torus( struct matrix * edges,
 struct matrix * generate_torus( double cx, double cy, double cz,
 				double r1, double r2, double step ) {
   struct matrix * torus = new_matrix(4,4);
-  int n = 1/step;
-  int i, j;
-  double t, x, y, z;
-  for(i = 0;i <= n;i++){
-    for(j = 0;j <= n;j++){
-      
+  double i, j, x, y, z;
+  for(i = 0;i <= 1.001;i+=step){
+    for(j = 0;j <= 1.001;j+=step){
+      x = ((r1 * cos(2 * M_PI * i) + r2) * (cos(2 * M_PI * j))) + cx;
+      y = r1 * sin(2 * M_PI * i) + cy;
+      z = ((-1.0 * sin(2 * M_PI * j)) * (r1 * cos(2 * M_PI * i) + r2)) + cz;
+      add_poinr(torus,x,y,z);
     }
   }
   return torus;
