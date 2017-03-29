@@ -75,8 +75,8 @@ void parse_file ( char * filename,
   clear_screen(s);
   color c;
   c.red = 0;
-  c.green = 255;
-  c.blue = 255;
+  c.green = 180;
+  c.blue = 100;
   
   if ( strcmp(filename, "stdin") == 0 ) 
     f = stdin;
@@ -104,12 +104,12 @@ void parse_file ( char * filename,
     }
     else if ( strncmp(line, "torus", strlen(line)) == 0 ) {
       fgets(line, sizeof(line), f);
-      sscanf(line "%lf %lf %lf %lf %lf", xvals,yvals,zvals,&r, &r0);
+      sscanf(line, "%lf %lf %lf %lf %lf", xvals,yvals,zvals,&r, &r0);
       add_torus(edges,xvals[0],yvals[0],zvals[0],r,r0,step);
     }
     else if ( strncmp(line, "sphere", strlen(line)) == 0 ) {
       fgets(line, sizeof(line), f);
-      sscanf(line "%lf %lf %lf %lf",xvals,yvals,zvals,r);
+      sscanf(line, "%lf %lf %lf %lf",xvals,yvals,zvals,&r);
       add_sphere(edges,xvals[0],yvals[0],zvals[0],r,step);
     }
     else if ( strncmp(line, "circle", strlen(line)) == 0 ) {
@@ -224,7 +224,7 @@ void parse_file ( char * filename,
       draw_lines(edges, s, c);
       save_extension(s, line);
     }//end save
-    else if(strncmp(line "clear", strlen(line)) == 0){
+    else if(strncmp(line, "clear", strlen(line)) == 0){
       edges = new_matrix(4,4);
     }
   }

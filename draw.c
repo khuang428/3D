@@ -134,7 +134,7 @@ struct matrix * generate_torus( double cx, double cy, double cz,
       x = ((r1 * cos(2 * M_PI * i) + r2) * (cos(2 * M_PI * j))) + cx;
       y = r1 * sin(2 * M_PI * i) + cy;
       z = ((-1.0 * sin(2 * M_PI * j)) * (r1 * cos(2 * M_PI * i) + r2)) + cz;
-      add_poinr(torus,x,y,z);
+      add_point(torus,x,y,z);
     }
   }
   return torus;
